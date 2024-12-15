@@ -53,22 +53,22 @@
 		</div>
 
         <div id="main-content" class="flex-1 flex flex-col bg-white ml-64">
-            <div class="py-4 pr-4 bg-blue-500 text-white flex items-center justify-between" id="chatHeader">
+            <div class="py-4 pr-4 bg-white text-black flex items-center justify-between border-gray-200 border-b" style="height: 60px;" id="chatHeader">
             	<div class="flex items-center relative">
             		<button onclick="toggleSidebar()" class="bg-gray-900 text-white text-2xl absolute left-0" style="width: 60px; height: 60px;">☰</button>
                 	<h2 class="text-lg font-semibold ml-20" id="chatroomname">${ chat.roomname } 채팅방</h2>
             	</div>
             	<div class="flex items-center">
                 	<h2 class="text-lg font-semibold">방 고유 번호: ${ chat.roomid }</h2>
-            		<input type="checkbox" id="chkbg" class="w-5 h-5 ml-5 cursor-pointer" onclick="blackAndWhite()">
+            		<input type="checkbox" id="chkbg" class="w-5 h-5 ml-5 cursor-pointer border-gray-500" onclick="blackAndWhite()">
             	</div>
             </div>
 
             <div class="flex-1 overflow-y-auto p-6 space-y-4" id="message-container"></div>
 
-            <div class="p-4 bg-gray-100 border-t border-gray-300 flex items-center space-x-2" id="mf">
+            <div class="p-4 bg-gray-100 border-t border-gray-200 flex items-center space-x-2" id="mf">
                 <textarea id="chattext" rows="1" class="flex-1 p-3 rounded-lg bg-white border border-gray-300 focus:outline-none focus:ring-2 resize-none focus:ring-blue-500 placeholder-gray-400" placeholder="메시지를 입력하세요..."></textarea>
-                <button type="submit" form="messageForm" class="h-full px-8 py-2 bg-blue-600 text-lg text-white rounded-lg hover:bg-blue-700">전송</button>
+                <button type="submit" form="messageForm" class="h-full px-8 py-2 bg-blue-500 text-lg text-white rounded-lg hover:bg-blue-700">전송</button>
                 <form id="messageForm" onsubmit="sendMessage(event)" class="hidden"></form>
             </div>
         </div>

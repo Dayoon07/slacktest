@@ -61,26 +61,23 @@ function blackAndWhite() {
 	const sidebar = document.getElementById("sidebar");
 	
 	if (!chkbg.checked) {
-		bg.classList.remove("bg-gray-900", "border-t", "border-b", "border-gray-700");
+		bg.classList.remove("text-white", "bg-gray-900", "border-gray-700", "border");
+		bg.classList.add("bg-white");
 		
-		chatHeader.classList.add("bg-blue-500");
-		chatHeader.classList.remove("bg-gray-900");
+		chatHeader.classList.remove("text-white", "bg-white", "border-gray-700", "border-l", "border-b");
+		chatHeader.classList.add("bg-white", "border-gray-200", "border-b");
 		
-		mf.classList.add("border-gray-300", "bg-gray-100", "border-t");
-		mf.classList.remove("bg-gray-900");
-		
-		sidebar.classList.remove("border-gray-700", "border-r");
+		mf.classList.add("bg-gray-100", "border-t", "border-gray-200");
+		mf.classList.remove("bg-gray-900", "border-gray-700", "border-l");
 	} else {
-		bg.classList.add("bg-gray-900", "border-t", "border-b", "border-gray-700");
-		bg.classList.remove("bg-gray-100");
+		bg.classList.remove("bg-white");
+		bg.classList.add("bg-gray-900", "border-gray-700", "border");
 		
-		chatHeader.classList.remove("bg-blue-500");
-		chatHeader.classList.add("bg-gray-900");
+		chatHeader.classList.add("text-white", "bg-gray-900", "border-gray-700", "border-l");
+		chatHeader.classList.remove("text-black", "bg-white", "border-gray-200", "border-b");
 		
-		mf.classList.add("bg-gray-900");
-		mf.classList.remove("bg-gray-100", "border-gray-300", "border-t");
-		
-		sidebar.classList.add("border-gray-700", "border-r");
+		mf.classList.remove("bg-gray-100", "border-t", "border-gray-200");
+		mf.classList.add("bg-gray-900", "border-gray-700", "border-l");
 	}
 }
 
@@ -138,7 +135,7 @@ function appendMessage(message) {
 
     // 메시지 전체 영역
     const $messageWrapper = document.createElement("div");
-    $messageWrapper.classList.add("flex", "items-start", "mb-4");
+    $messageWrapper.classList.add("flex", "justify-start", "mb-4");
     if (message.sender === username) {
         $messageWrapper.classList.add("justify-end");
     } else {
@@ -163,10 +160,10 @@ function appendMessage(message) {
 
     // 사용자 이름과 시간
     const $headerDiv = document.createElement("div");
-    $headerDiv.classList.add("flex", "items-center", "space-x-2");
+    $headerDiv.classList.add("flex", "items-center");
 
     const $username = document.createElement("span");
-    $username.classList.add("font-bold", "text-gray-800");
+    $username.classList.add("font-bold", "text-gray-800", "text-lg", "mr-3");
     $username.innerText = message.sender;
 
     const $time = document.createElement("span");
@@ -180,29 +177,12 @@ function appendMessage(message) {
     const $messageText = document.createElement("p");
 
     // 메시지 스타일 설정 (조건적으로 클래스 적용)
-    if (message.sender === username) {
-        $messageText.classList.add(
-            "p-2",
-            "rounded-lg",
-            "max-w-xl",
-            "text-lg",
-            "font-semibold",
-            "bg-gradient-to-r",
-            "from-cyan-500",
-            "to-blue-500",
-            "text-white"
-        );
-    } else {
-        $messageText.classList.add(
-            "p-2",
-            "rounded-lg",
-            "max-w-xl",
-            "text-lg",
-            "font-semibold",
-            "bg-gray-200",
-            "text-black"
-        );
-    }
+	if (message.sender === username) {
+	    $messageText.classList.add("p-3", "bg-blue-500", "rounded-lg", "max-w-xl", "text-lg", "text-white", "min-w-40");
+		$headerDiv.classList.add("text-right");
+	} else {
+	    $messageText.classList.add( "p-3", "rounded-lg", "max-w-xl", "text-lg", "bg-gray-200", "text-black", "min-w-40");
+	}
     $messageText.innerText = message.data;
 
     // 구성 요소 조립
@@ -251,7 +231,7 @@ function updateUserList(userList) {
 			"text-white", "rounded-lg", "flex", "items-center", "hover:bg-gray-700", "cursor-pointer"
 		);
 		
-		$userItem.innerText = user;
+		$userItem.innerText = user === username ? `${user} (나)` : user;
         $userListContainer.appendChild($userItem);
     });
 }
